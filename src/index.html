@@ -17,9 +17,10 @@
             <ul id="nav-mobile" class="right hide-on-med-and-down ml-auto">
               <li>
                   <div class="input-field currency-select">
-                      <select>
+                      <select id='currency'>
                         <option value="USD">$ US Dollar</option>
                         <option value="EUR">€ Euro</option>
+                        <option value="RUB">₽ Рублей</option>
                       </select>
                       <!-- <label>Currency</label> -->
                     </div>
@@ -45,11 +46,10 @@
                                     >
                                     <label for="autocomplete-origin">Origin</label>
                                 </div>
-
                                 <div class="input-field">
                                     <input 
                                         type="text" 
-                                        id="autocomplete-destination" 
+                                        id="autocomplete-destination"
                                         class="autocomplete"
                                     >
                                     <label for="autocomplete-destination">Destination</label>
@@ -94,6 +94,11 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="tickets-sections">
+        <div class="container">
+            <div class="row"></div>
         </div>
     </div>
 </body>

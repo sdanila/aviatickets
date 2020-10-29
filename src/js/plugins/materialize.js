@@ -24,6 +24,6 @@ M.Datepicker.init(datepickers, {
     format: 'yyyy-mm',
 });
 
-export function getDatepickerInstance(elem) {
+export function getDatePickerInstance(elem) {
     return M.Datepicker.getInstance(elem);
 }
