@@ -82,10 +82,6 @@ class Locations {
         }, {})
     }
 
-    // getCountryNamyBuCode(code) {
-    //     return this.countries[code].name;
-    // }
-
     async fetchTickets(params) {
         const response = await this.api.prices(params);
         this.lastSearch = this.serializeTickets(response.data);
