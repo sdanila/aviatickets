@@ -4,18 +4,21 @@ import locations from './store/locations';
 import formUI from './views/form';
 import currencyUi from './views/currency';
 import ticketUI from './views/tickets';
+import favorites from './store/favorites';
 
 
 document.addEventListener('DOMContentLoaded', () => {
     initApp();
     const form = formUI.form;
 
+
     // Events
 
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', e => {
         e.preventDefault();
         onFormSubmit();
     })
+    
 
     // Handlers 
     async function initApp() {
@@ -39,5 +42,7 @@ document.addEventListener('DOMContentLoaded', () => {
             currency,
         })
         ticketUI.renderTickets(locations.lastSearch);
+        favorites.favButtons();
     }
+
 })

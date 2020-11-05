@@ -1,6 +1,9 @@
+import currencyUi from './currency';
+
 class TicketsUI {
-    constructor() {
+    constructor(currency) {
         this.container = document.querySelector('.tickets-sections .row');
+        this.getCarrencySymbol = currency.getCurrencySymbol.bind(currency);
     }
 
     renderTickets(tickets) {
@@ -12,16 +15,17 @@ class TicketsUI {
             return;
         }
 
-        let fragment;
 
-        console.log(tickets);
+        let fragment = '';
+
+        const currency = this.getCarrencySymbol();
 
         tickets.forEach(ticket => {
-            const template = TicketsUI.ticketTemplate(ticket);
+            const template = TicketsUI.ticketTemplate(ticket, currency);
             fragment += template;
         });
 
-        this.container.insertAdjacentHTML('beforeend', fragment);
+        this.container.insertAdjacentHTML('afterbegin', fragment);
     }
 
     clearContainer() {
@@ -35,13 +39,13 @@ class TicketsUI {
 
     static emptyMsgTemplate() {
         return `
-        <div class="ticket-empty-res-msg">
+        <div class="tickets-empty-res-msg">
             Билетов по вашему запросу не найдено.
         </div>
         `
     }
 
-    static ticketTemplate(ticket) {
+    static ticketTemplate(ticket, currency) {
         return `
         <div class="col s12 m6">
             <div class="card ticket-card">
@@ -65,7 +69,7 @@ class TicketsUI {
                 </div>
                 <div class="ticket-time-price d-flex align-items-center">
                     <span class="ticket-time-departure">${ticket.departure_at}</span>
-                    <span class="ticket-price ml-auto">${ticket.price}</span>
+                    <span class="ticket-price ml-auto">${currency}${ticket.price}</span>
                 </div>
                 <div class="ticket-additional-info">
                     <span class="ticket-transfers">
@@ -75,12 +79,16 @@ class TicketsUI {
                         Номер рейса: ${ticket.flight_number}
                     </span>
                 </div>
+                <a
+                    class="waves-effect waves-light btn-small yellow darken-2 add-favorite ml-auto"
+                    >В избранное
+                </a>
             </div>
         </div>
         `
     }
 }
 
-const ticketUI = new TicketsUI();
+const ticketUI = new TicketsUI(currencyUi);
 
 export default ticketUI;
